@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/michaelmoussa/zend-psr-log.svg?branch=master)](https://travis-ci.org/michaelmoussa/zend-psr-log)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/michaelmoussa/zend-psr-log/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/michaelmoussa/zend-psr-log/?branch=master)
+[![Code Climate](https://codeclimate.com/github/michaelmoussa/zend-psr-log/badges/gpa.svg)](https://codeclimate.com/github/michaelmoussa/zend-psr-log)
+[![Code Coverage](https://scrutinizer-ci.com/g/michaelmoussa/zend-psr-log/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/michaelmoussa/zend-psr-log/?branch=master)
+
 # zend-psr-log
 
 ## Overview

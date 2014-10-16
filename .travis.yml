@@ -19,6 +19,10 @@ script:
     - vendor/bin/phpdoc -c phpdoc.xml --force
     - php .travis/phpdoc-checker.php build/phpdoc/checkstyle.xml
 
+after_script:
+    - wget https://scrutinizer-ci.com/ocular.phar
+    - php ocular.phar code-coverage:upload --format=php-clover ./build/coverage-clover.xml
+
 matrix:
     fast_finish: true
     allow_failures:
