@@ -2,6 +2,9 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/michaelmoussa/zend-psr-log/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/michaelmoussa/zend-psr-log/?branch=master)
 [![Code Climate](https://codeclimate.com/github/michaelmoussa/zend-psr-log/badges/gpa.svg)](https://codeclimate.com/github/michaelmoussa/zend-psr-log)
 [![Code Coverage](https://scrutinizer-ci.com/g/michaelmoussa/zend-psr-log/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/michaelmoussa/zend-psr-log/?branch=master)
+[![Latest Stable Version](https://poser.pugx.org/michaelmoussa/zend-psr-log/version.svg)](https://packagist.org/packages/michaelmoussa/zend-psr-log)
+[![Latest Unstable Version](https://poser.pugx.org/michaelmoussa/zend-psr-log/v/unstable.svg)](//packagist.org/packages/michaelmoussa/zend-psr-log)
+[![License](https://poser.pugx.org/michaelmoussa/zend-psr-log/license.svg)](https://packagist.org/packages/michaelmoussa/zend-psr-log)
 
 # zend-psr-log
 
