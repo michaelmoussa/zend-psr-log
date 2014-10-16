@@ -20,4 +20,4 @@ having all messages go through `Zend\Log\Logger` and benefiting from its robustn
 
 The only supported method of installation is [Composer](https://getcomposer.org/).
 
-composer require "michaelmoussa/zend-psr-log"
+`composer require "michaelmoussa/zend-psr-log"`
