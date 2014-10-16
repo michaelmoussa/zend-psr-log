@@ -13,7 +13,7 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
 
     public function testGetConfigReturnsCorrectConfig()
     {
-        $this->assertSame(include __DIR__ . '/../config/module.config.php', $this->module->getConfig());
+        $this->assertEquals(include __DIR__ . '/../config/module.config.php', $this->module->getConfig());
     }
 
     public function testModuleConfigDefinesLoggerFactory()
