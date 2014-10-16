@@ -20,6 +20,6 @@ script:
     - php .travis/phpdoc-checker.php build/phpdoc/checkstyle.xml
 
 matrix:
-  fast_finish: true
-  allow_failures:
-    - php: hhvm
+    fast_finish: true
+    allow_failures:
+        - php: hhvm
