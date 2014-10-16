@@ -17,6 +17,7 @@ script:
     - php .travis/coverage-checker.php build/coverage-clover.xml 100
     - vendor/bin/phpcs --standard=PSR2 -s -p config/ src/ test/
     - vendor/bin/phpdoc -c phpdoc.xml --force
+    - php .travis/phpdoc-checker.php build/phpdoc/checkstyle.xml
 
 matrix:
   fast_finish: true
