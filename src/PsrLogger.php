@@ -7,18 +7,16 @@
  */
 namespace ZendPsrLog;
 
+use Psr\Log\AbstractLogger;
 use Psr\Log\LoggerInterface as PsrLoggerInterface;
-use Psr\Log\LoggerTrait;
 use Psr\Log\LogLevel;
 use Zend\Log\Logger as ZendLogger;
 
 /**
  * A PSR-3 compliant proxy to an underlying Zend\Log\Logger
  */
-class PsrLogger implements PsrLoggerInterface
+class PsrLogger extends AbstractLogger implements PsrLoggerInterface
 {
-    use LoggerTrait;
-
     /**
      * Instance of a ZF2 logger.
      *
@@ -31,7 +29,7 @@ class PsrLogger implements PsrLoggerInterface
      *
      * @var array
      */
-    public static $zendLogLevelMap = [
+    public static $zendLogLevelMap = array(
         LogLevel::EMERGENCY => ZendLogger::EMERG,
         LogLevel::ALERT => ZendLogger::ALERT,
         LogLevel::CRITICAL => ZendLogger::CRIT,
@@ -40,7 +38,7 @@ class PsrLogger implements PsrLoggerInterface
         LogLevel::NOTICE => ZendLogger::NOTICE,
         LogLevel::INFO => ZendLogger::INFO,
         LogLevel::DEBUG => ZendLogger::DEBUG,
-    ];
+    );
 
     /**
      * Constructor

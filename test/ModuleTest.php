@@ -19,17 +19,17 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
     public function testModuleConfigDefinesLoggerFactory()
     {
         $application = \Zend\Mvc\Application::init(
-            [
-                'modules' => [
+            array(
+                'modules' => array(
                     'ZendPsrLog'
-                ],
-                'module_listener_options' => [
-                    'module_paths' => [
+                ),
+                'module_listener_options' => array(
+                    'module_paths' => array(
                         __DIR__ . '/../src',
                         __DIR__ . '/../vendor'
-                    ],
-                ]
-            ]
+                    ),
+                )
+            )
         );
         $serviceManager = $application->getServiceManager();
 
