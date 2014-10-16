@@ -6,7 +6,7 @@ A number of PHP libraries accept a `Psr\Log\LoggerInterface` for logging message
 [Zend Framework 2](https://github.com/zendframework/zf2) cannot provide their existing `Zend\Log\Logger` loggers, as
 they don't comply with [PSR-3](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-3-logger-interface.md).
 
-In fact, the two interfaces are not compatible, as their interfaces have several common methods with different
+In fact, the two interfaces are not compatible, as they declare some common methods with different
 signatures. For example:
 [Zend alert](https://github.com/zendframework/zf2/blob/master/library/Zend/Log/LoggerInterface.php#L28) vs.
 [Psr alert](https://github.com/php-fig/log/blob/master/Psr/Log/LoggerInterface.php#L41).
