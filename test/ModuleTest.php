@@ -16,6 +16,26 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(include __DIR__ . '/../config/module.config.php', $this->module->getConfig());
     }
 
+    public function testModuleConfigDefinesLoggerFactory()
+    {
+        $application = \Zend\Mvc\Application::init(
+            [
+                'modules' => [
+                    'ZendPsrLog'
+                ],
+                'module_listener_options' => [
+                    'module_paths' => [
+                        __DIR__ . '/../src',
+                        __DIR__ . '/../vendor'
+                    ],
+                ]
+            ]
+        );
+        $serviceManager = $application->getServiceManager();
+
+        $this->assertInstanceOf('ZendPsrLog\Logger', $serviceManager->get('Zend\Log\Logger'));
+    }
+
     protected function setUp()
     {
         $this->module = new Module();
