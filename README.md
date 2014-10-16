@@ -46,15 +46,24 @@ return [
 
 Further configuration depends on how you are presently getting your instances of a `Zend\Log\Logger`.
 
-### "I define a `log` key in my configuration and let `Zend\Log\LoggerAbstractServiceFactory` do the work."
+### "I define a `log` entry in my configuration with `Zend\Log\Logger` as the key, and then let `Zend\Log\LoggerAbstractServiceFactory` do the work."
 
 Then you're done! `ZendPsrLog` adds its own factory for creating `Zend\Log\Logger` instances, which will be invoked
 before the Abstract Factory.
 
-### "I define a `log` key in my configuration and have my own `'Zend\Log\Logger' => '...'` factory definition in the
-service manager config."
+### "I define a `log` entry in my configuration with a different key, then let `Zend\Log\LoggerAbstractServiceFactory` do the work."
 
-You need to remove it, as your definition will override the one done by the `ZendPsrLog\LoggerFactory`.
+For each key you use, you'll need to add a `'My\Key\Here' => new \ZendPsrLog\LoggerFactory('My\Key\Here')` entry to
+your service manager config.
+
+### "I define a log key in my configuration with no key, and then have my own `'Zend\Log\Logger' => '...'` factory definition in the service manager config"
+
+You need to replace your `'Zend\Log\Logger' => '...'` entry with
+`'Zend\Log\Logger' => new \ZendPsrLog\LoggerFactory(null)`, as your definition will override the one done by the
+`ZendPsrLog\LoggerFactory`.
+
+If your custom factory is doing some special logic, you will have to extend `ZendPsrLog\LoggerFactory` on your own to
+ensure it persists.
 
 ### "I use `new \Zend\Log\Logger(...)`."
 
