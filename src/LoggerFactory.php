@@ -16,6 +16,23 @@ use Zend\ServiceManager\ServiceLocatorInterface;
 class LoggerFactory implements FactoryInterface
 {
     /**
+     * The key immediately under "log" in the config to use for this logger.
+     *
+     * @var string
+     */
+    protected $configKey;
+
+    /**
+     * Constructor
+     *
+     * @param string $configKey
+     */
+    public function __construct($configKey)
+    {
+        $this->configKey = $configKey;
+    }
+
+    /**
      * Creates the ZendPsrLog logger.
      *
      * @param ServiceLocatorInterface $serviceLocator
@@ -24,6 +41,13 @@ class LoggerFactory implements FactoryInterface
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $config = $serviceLocator->get('Config');
-        return new Logger(isset($config['log']) ? $config['log'] : array());
+
+        if (!empty($this->configKey)) {
+            $loggerConfig = isset($config['log'][$this->configKey]) ? $config['log'][$this->configKey] : array();
+        } else {
+            $loggerConfig = isset($config['log']) ? $config['log'] : array();
+        }
+
+        return new Logger($loggerConfig);
     }
 }

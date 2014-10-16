@@ -11,10 +11,29 @@ class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreatesZendPsrLogger()
     {
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('config', array('log' => array('writers' => array(array('name' => 'mock')))));
+        $serviceManager->setService(
+            'config',
+            array('log' => array('Zend\Log\Logger' => array('writers' => array(array('name' => 'mock')))))
+        );
 
-        $factory = new LoggerFactory();
-        $this->assertInstanceOf('ZendPsrLog\Logger', $factory->createService($serviceManager));
+        $factory = new LoggerFactory('Zend\Log\Logger');
+        $logger = $factory->createService($serviceManager);
+        $this->assertInstanceOf('ZendPsrLog\Logger', $logger);
+        $this->assertSame(1, count($logger->getWriters()));
+    }
+
+    public function testNullConfigKeyUsesRootLogKeyAsLoggerConfig()
+    {
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService(
+            'config',
+            array('log' => array('writers' => array(array('name' => 'mock'))))
+        );
+
+        $factory = new LoggerFactory(null);
+        $logger = $factory->createService($serviceManager);
+        $this->assertInstanceOf('ZendPsrLog\Logger', $logger);
+        $this->assertSame(1, count($logger->getWriters()));
     }
 
     /**
@@ -25,9 +44,12 @@ class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreatesLoggerEquivalentToHowTheZendLoggerServiceFactoryDoesIt()
     {
         $serviceManager = new ServiceManager();
-        $serviceManager->setService('config', array('log' => array('writers' => array(array('name' => 'mock')))));
+        $serviceManager->setService(
+            'config',
+            array('log' => array('writers' => array(array('name' => 'mock'))))
+        );
 
-        $zendPsrLoggerFactory = new LoggerFactory();
+        $zendPsrLoggerFactory = new LoggerFactory(null);
         $zendPsrLogger = $zendPsrLoggerFactory->createService($serviceManager);
 
         $zendLoggerServiceFactory = new LoggerServiceFactory();
@@ -38,7 +60,16 @@ class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
 
         /** @var \ReflectionProperty $property */
         foreach ($reflectedZendLogger->getProperties() as $property) {
-            $this->assertEquals($property, $reflectedZendPsrLogger->getProperty($property->getName()));
+            $zendLoggerProperty = new \ReflectionProperty($zendLogger, $property->getName());
+            $zendLoggerProperty->setAccessible(true);
+
+            $zendPsrLoggerProperty = new \ReflectionProperty($zendPsrLogger, $property->getName());
+            $zendPsrLoggerProperty->setAccessible(true);
+
+            $this->assertEquals(
+                $zendLoggerProperty->getValue($zendLogger),
+                $zendPsrLoggerProperty->getValue($zendPsrLogger)
+            );
         }
 
         $this->assertSame(
