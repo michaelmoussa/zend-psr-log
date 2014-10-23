@@ -16,6 +16,11 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(include __DIR__ . '/../config/module.config.php', $this->module->getConfig());
     }
 
+    public function testGetServiceConfigReturnsCorrectConfig()
+    {
+        $this->assertEquals(include __DIR__ . '/../config/service.config.php', $this->module->getServiceConfig());
+    }
+
     public function testModuleConfigDefinesLoggerFactory()
     {
         $application = \Zend\Mvc\Application::init(
