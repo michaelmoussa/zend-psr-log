@@ -11,6 +11,16 @@ class ModuleTest extends \PHPUnit_Framework_TestCase
      */
     protected $module;
 
+    public function testIsConfigProvider()
+    {
+        $this->assertInstanceOf('Zend\ModuleManager\Feature\ConfigProviderInterface', $this->module);
+    }
+
+    public function testIsServiceProvider()
+    {
+        $this->assertInstanceOf('Zend\ModuleManager\Feature\ServiceProviderInterface', $this->module);
+    }
+
     public function testGetConfigReturnsCorrectConfig()
     {
         $this->assertEquals(include __DIR__ . '/../config/module.config.php', $this->module->getConfig());
