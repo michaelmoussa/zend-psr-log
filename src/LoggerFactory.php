@@ -27,9 +27,11 @@ class LoggerFactory implements FactoryInterface
      *
      * @param string $configKey
      */
-    public function __construct($configKey)
+    public function __construct($configKey = null)
     {
-        $this->configKey = $configKey;
+        if ($configKey !== null) {
+            $this->configKey = $configKey;
+        }
     }
 
     /**
