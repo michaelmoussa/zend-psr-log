@@ -1,10 +1,14 @@
 {
-    "name": "michaelmoussa/zend-psr-log",
+    "name": "legow/zend-psr-log",
     "description": "PSR3-compliant, backwards-compatible, drop-in replacement for Zend\\Log\\Logger.",
     "authors": [
         {
             "name": "Michael Moussa",
             "email": "michael.moussa@gmail.com"
+        },
+        {
+            "name": "Turcsán Ádám",
+            "email": "adam.turcsan@legow.hu"
         }
     ],
     "license": "MIT",
