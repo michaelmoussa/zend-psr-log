@@ -8,6 +8,7 @@ use Zend\ServiceManager\ServiceManager;
 
 class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
 {
+
     public function testCreatesZendPsrLogger()
     {
         $serviceManager = new ServiceManager();
@@ -36,6 +37,25 @@ class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(1, count($logger->getWriters()));
     }
 
+    public function testWithoutConfigKeyUsesRootLogKeyAsLoggerConfig()
+    {
+        $serviceManager = new ServiceManager();
+        $serviceManager->setService(
+            'config',
+            array('log' => array('writers' => array(array('name' => 'mock'))))
+        );
+
+        $factory = new LoggerFactory();
+        $logger = $factory->createService($serviceManager);
+        $this->assertInstanceOf('ZendPsrLog\Logger', $logger);
+        $this->assertSame(1, count($logger->getWriters()));
+
+        $serviceManager->setFactory('Psr\Log\LoggerInterface', 'ZendPsrLog\\LoggerFactory');
+        $loggerService = $serviceManager->get('Psr\Log\LoggerInterface');
+        $this->assertInstanceOf('ZendPsrLog\Logger', $loggerService);
+        $this->assertSame(1, count($loggerService->getWriters()));
+    }
+
     /**
      * The Zend\Log\LoggerServiceFactory can't be directly re-used because can't
      * change the type of Logger it returns, so let's at least make sure that
@@ -60,10 +80,16 @@ class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
 
         /** @var \ReflectionProperty $property */
         foreach ($reflectedZendLogger->getProperties() as $property) {
-            $zendLoggerProperty = new \ReflectionProperty($zendLogger, $property->getName());
+            $zendLoggerProperty = new \ReflectionProperty(
+                $zendLogger,
+                $property->getName()
+            );
             $zendLoggerProperty->setAccessible(true);
 
-            $zendPsrLoggerProperty = new \ReflectionProperty($zendPsrLogger, $property->getName());
+            $zendPsrLoggerProperty = new \ReflectionProperty(
+                $zendPsrLogger,
+                $property->getName()
+            );
             $zendPsrLoggerProperty->setAccessible(true);
 
             $this->assertEquals(
