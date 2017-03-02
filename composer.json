@@ -9,7 +9,7 @@
     ],
     "license": "MIT",
     "require": {
-        "php": ">=5.3.3",
+        "php": "^7.0",
         "psr/log": "~1.0",
         "zendframework/zend-log": "~2.1",
         "zendframework/zend-modulemanager": "~2.1",
