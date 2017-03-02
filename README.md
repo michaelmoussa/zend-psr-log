@@ -16,8 +16,8 @@ they don't comply with [PSR-3](https://github.com/php-fig/fig-standards/blob/mas
 
 In fact, the two interfaces are not compatible, as they declare some common methods with different
 signatures. For example:
-[Zend alert](https://github.com/zendframework/zf2/blob/master/library/Zend/Log/LoggerInterface.php#L28) vs.
-[Psr alert](https://github.com/php-fig/log/blob/master/Psr/Log/LoggerInterface.php#L41).
+[Zend alert](https://github.com/zendframework/zendframework/blob/release-2.1.0/library/Zend/Log/LoggerInterface.php#L28) vs.
+[Psr alert](https://github.com/php-fig/log/blob/504b915845b0fe47819fcbabbfbea18e95f5cf5c/Psr/Log/LoggerInterface.php#L41).
 
 This library serves as a backwards-compatible replacement for `Zend\Log\Logger` instances that provides a
 [Psr\Log](https://github.com/php-fig/log)-compliant interface to the underlying `Zend\Log\Logger` instance. The
