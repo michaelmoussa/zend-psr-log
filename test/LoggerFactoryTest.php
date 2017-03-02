@@ -8,7 +8,6 @@ use Zend\ServiceManager\ServiceManager;
 
 class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testCreatesZendPsrLogger()
     {
         $serviceManager = new ServiceManager();
@@ -80,16 +79,10 @@ class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
 
         /** @var \ReflectionProperty $property */
         foreach ($reflectedZendLogger->getProperties() as $property) {
-            $zendLoggerProperty = new \ReflectionProperty(
-                $zendLogger,
-                $property->getName()
-            );
+            $zendLoggerProperty = new \ReflectionProperty($zendLogger, $property->getName());
             $zendLoggerProperty->setAccessible(true);
 
-            $zendPsrLoggerProperty = new \ReflectionProperty(
-                $zendPsrLogger,
-                $property->getName()
-            );
+            $zendPsrLoggerProperty = new \ReflectionProperty($zendPsrLogger, $property->getName());
             $zendPsrLoggerProperty->setAccessible(true);
 
             $this->assertEquals(
