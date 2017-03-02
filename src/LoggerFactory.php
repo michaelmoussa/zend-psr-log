@@ -45,9 +45,9 @@ class LoggerFactory implements FactoryInterface
         $config = $serviceLocator->get('Config');
 
         if (!empty($this->configKey)) {
-            $loggerConfig = isset($config['log'][$this->configKey]) ? $config['log'][$this->configKey] : array();
+            $loggerConfig = isset($config['log'][$this->configKey]) ? $config['log'][$this->configKey] : [];
         } else {
-            $loggerConfig = isset($config['log']) ? $config['log'] : array();
+            $loggerConfig = isset($config['log']) ? $config['log'] : [];
         }
 
         return new Logger($loggerConfig);

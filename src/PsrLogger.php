@@ -29,7 +29,7 @@ class PsrLogger extends AbstractLogger implements PsrLoggerInterface
      *
      * @var array
      */
-    public static $zendLogLevelMap = array(
+    public static $zendLogLevelMap = [
         LogLevel::EMERGENCY => ZendLogger::EMERG,
         LogLevel::ALERT => ZendLogger::ALERT,
         LogLevel::CRITICAL => ZendLogger::CRIT,
@@ -38,7 +38,7 @@ class PsrLogger extends AbstractLogger implements PsrLoggerInterface
         LogLevel::NOTICE => ZendLogger::NOTICE,
         LogLevel::INFO => ZendLogger::INFO,
         LogLevel::DEBUG => ZendLogger::DEBUG,
-    );
+    ];
 
     /**
      * Constructor
@@ -72,7 +72,7 @@ class PsrLogger extends AbstractLogger implements PsrLoggerInterface
      * @param array $context
      * @return Logger
      */
-    public function log($level, $message, array $context = array())
+    public function log($level, $message, array $context = [])
     {
         return $this->zendLogger->log($this->getZendLogLevel($level), $message, $context);
     }

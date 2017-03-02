@@ -37,16 +37,16 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
 
     public function psrLogLevelsProvider()
     {
-        return array(
-            array(LogLevel::EMERGENCY),
-            array(LogLevel::ALERT),
-            array(LogLevel::CRITICAL),
-            array(LogLevel::ERROR),
-            array(LogLevel::WARNING),
-            array(LogLevel::NOTICE),
-            array(LogLevel::INFO),
-            array(LogLevel::DEBUG),
-        );
+        return [
+            [LogLevel::EMERGENCY],
+            [LogLevel::ALERT],
+            [LogLevel::CRITICAL],
+            [LogLevel::ERROR],
+            [LogLevel::WARNING],
+            [LogLevel::NOTICE],
+            [LogLevel::INFO],
+            [LogLevel::DEBUG],
+        ];
     }
 
     /**
@@ -55,31 +55,31 @@ class PsrLoggerTest extends \PHPUnit_Framework_TestCase
     public function testNamedLogMethodCallsAreProxiedToTheZendLogger($logLevel)
     {
         $message = 'it works!';
-        $extra = array('foo' => 'bar');
+        $extra = ['foo' => 'bar'];
 
         $this->zendLogger->shouldReceive('log')
             ->once()
             ->with($this->psrLogger->getZendLogLevel($logLevel), $message, $extra)
             ->andReturnSelf();
-        call_user_func(array($this->psrLogger, $logLevel), $message, $extra);
+        call_user_func([$this->psrLogger, $logLevel], $message, $extra);
     }
 
     public function testDirectLogCallsAreProxiedToTheZendLogger()
     {
         $logLevel = LogLevel::INFO;
         $message = 'it works!';
-        $extra = array('foo' => 'bar');
+        $extra = ['foo' => 'bar'];
 
         $this->zendLogger->shouldReceive('log')
             ->once()
             ->with($this->psrLogger->getZendLogLevel($logLevel), $message, $extra)
             ->andReturnSelf();
-        call_user_func(array($this->psrLogger, 'log'), $logLevel, $message, $extra);
+        call_user_func([$this->psrLogger, 'log'], $logLevel, $message, $extra);
     }
 
     protected function setUp()
     {
-        $this->zendLogger = m::mock('Zend\Log\Logger', array())->shouldDeferMissing();
+        $this->zendLogger = m::mock('Zend\Log\Logger', [])->shouldDeferMissing();
         $this->psrLogger = new PsrLogger($this->zendLogger);
     }
 

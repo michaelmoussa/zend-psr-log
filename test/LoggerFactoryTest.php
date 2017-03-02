@@ -13,7 +13,7 @@ class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager();
         $serviceManager->setService(
             'config',
-            array('log' => array('Zend\Log\Logger' => array('writers' => array(array('name' => 'mock')))))
+            ['log' => ['Zend\Log\Logger' => ['writers' => [['name' => 'mock']]]]]
         );
 
         $factory = new LoggerFactory('Zend\Log\Logger');
@@ -27,7 +27,7 @@ class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager();
         $serviceManager->setService(
             'config',
-            array('log' => array('writers' => array(array('name' => 'mock'))))
+            ['log' => ['writers' => [['name' => 'mock']]]]
         );
 
         $factory = new LoggerFactory(null);
@@ -41,7 +41,7 @@ class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager();
         $serviceManager->setService(
             'config',
-            array('log' => array('writers' => array(array('name' => 'mock'))))
+            ['log' => ['writers' => [['name' => 'mock']]]]
         );
 
         $factory = new LoggerFactory();
@@ -65,7 +65,7 @@ class LoggerFactoryTest extends \PHPUnit_Framework_TestCase
         $serviceManager = new ServiceManager();
         $serviceManager->setService(
             'config',
-            array('log' => array('writers' => array(array('name' => 'mock'))))
+            ['log' => ['writers' => [['name' => 'mock']]]]
         );
 
         $zendPsrLoggerFactory = new LoggerFactory(null);
